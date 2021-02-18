@@ -3,12 +3,12 @@ import matplotlib.pyplot as mp
 
 data = pd.ExcelFile('IMVA.xls')
 sheet = pd.read_excel(data, 'Sheet1')
-start_year = 1978
-end_year = 1987
-countries = ["Brunei Darussalam", "Indonesia", "Malaysia", "Myanmar", "Philippines", "Thailand", "Vietnam", "China", "Hong Kong SAR", "Taiwan", "Japan", "South Korea", "Bangladesh", "India", "Pakistan", "Sri Lanka", "Iran", "Israel", "Kuwait", "Saudi Arabia", "United Arab Emirates"]
-countries_total = {}
-countries_total["Country"] = []
-countries_total["Total"] = []
+start_year = 2001
+end_year = 2003
+countries = ["Brunei Darussalam", "Indonesia", "Malaysia", "Myanmar", "Philippines", "Thailand", "Vietnam", "China",
+             "Hong Kong SAR", "Taiwan", "Japan", "South Korea", "Bangladesh", "India", "Pakistan", "Sri Lanka", "Iran",
+             "Israel", "Kuwait", "Saudi Arabia", "United Arab Emirates"]
+countries_total = {"Country": [], "Total": []}
 countries_total_array = []
 years = []
 dates = []
@@ -36,8 +36,12 @@ Country = countries_total["Country"].to_list()
 Country.reverse()
 Total.reverse()
 
+mp.figure(figsize=(10, 5))
+mp.gcf().subplots_adjust(bottom=0.30)
 mp.xticks(range(len(Country)), Country, rotation='vertical')
 mp.bar(Country, Total)
+mp.title('Total Visitors (' + str(start_year) + ' - ' + str(end_year) + ')')
+mp.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)
 mp.show()
 
 top_countries = []
@@ -47,6 +51,10 @@ for x in range(3):
     top_countries.append(Country[x])
     top_total.append(Total[x])
 
+mp.figure(figsize=(10, 5))
+mp.gcf().subplots_adjust(bottom=0.30)
 mp.xticks(range(len(top_countries)), top_countries, rotation='vertical')
 mp.bar(top_countries, top_total)
+mp.title('Top Countries (' + str(start_year) + ' - ' + str(end_year) + ')')
+mp.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)
 mp.show()
