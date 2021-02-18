@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as mp
 
-
 data = pd.ExcelFile('IMVA.xls')
 sheet = pd.read_excel(data, 'Sheet1')
 start_year = 1978
