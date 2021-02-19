@@ -6,8 +6,8 @@ class testMyProgram(unittest.TestCase):
     def test_topTotals(self):
         self.assertEqual(prog.findCountries.top3_total, 5934194)
 
-    def test_grandMean(self):
-        self.assertEqual(prog.findCountries.grand_mean, 78875)
+    def test_topMean(self):
+        self.assertEqual(prog.findCountries.top3_mean, 781875)
 
 
 if __name__ == '__main__':

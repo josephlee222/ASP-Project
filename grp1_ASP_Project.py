@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
 
 class findCountries:
     data = pd.ExcelFile('IMVA.xls')
@@ -50,7 +49,7 @@ class findCountries:
     plt.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)
     plt.savefig("top3Countries.png")
     top3_total = sum(countries_total['Total'].head(3).to_list())
-    grand_mean = round(np.mean(countries_total['Total'].to_list()))
+    top3_mean = round(top3_total / 3)
 
 if __name__ == '__main__':
     findCountries()
