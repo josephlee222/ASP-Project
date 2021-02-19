@@ -3,30 +3,28 @@ import matplotlib.pyplot as plt
 
 class findCountries:
     data = pd.ExcelFile('IMVA.xls')
-    sheet = pd.read_excel(data, 'Sheet1')
+    df = pd.read_excel(data, 'Sheet1')
     start_year = 1978
     end_year = 1987
     countries = ["Brunei Darussalam", "Indonesia", "Malaysia", "Myanmar", "Philippines", "Thailand", "Vietnam", "China",
                  "Hong Kong SAR", "Taiwan", "Japan", "South Korea", "Bangladesh", "India", "Pakistan", "Sri Lanka", "Iran",
                  "Israel", "Kuwait", "Saudi Arabia", "United Arab Emirates"]
     select_countries = ["Date"] + countries
-    sheet = sheet[select_countries]
+    df = df[select_countries]
     countries_total = {"Country": [], "Total": []}
-    countries_total_array = []
     years = []
-    dates = []
 
-    for x in sheet['Date']:
+    for x in df['Date']:
         date = x.split()
         years.append(int(date[0]))
 
-    sheet.insert(1, "Year", years, True)
-    sheet = sheet[sheet.Year >= start_year]
-    sheet = sheet[sheet.Year <= end_year]
-    sheet.replace("na", 0, inplace=True)
+    df.insert(1, "Year", years, True)
+    df = df[df.Year >= start_year]
+    df = df[df.Year <= end_year]
+    df.replace("na", 0, inplace=True)
 
     for x in countries:
-        countries_total["Total"].append(sheet[x].sum())
+        countries_total["Total"].append(df[x].sum())
         countries_total["Country"].append(x)
 
     countries_total = pd.DataFrame.from_dict(countries_total)
