@@ -1,5 +1,5 @@
 import unittest
-import ASP_Project as prog
+import grp1_ASP_Project as prog
 
 
 class testMyProgram(unittest.TestCase):
