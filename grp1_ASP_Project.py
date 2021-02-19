@@ -50,6 +50,8 @@ class findCountries:
     plt.savefig("top3Countries.png")
     top3_total = sum(countries_total['Total'].head(3).to_list())
     top3_mean = round(top3_total / 3)
+    print("The total no. for the top 3 countries is " + str(top3_total))
+    print("The mean value for the top 3 countries is " + str(top3_mean))
 
 if __name__ == '__main__':
     findCountries()
