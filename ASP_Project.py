@@ -31,38 +31,28 @@ class findCountries:
         countries_total["Country"].append(x)
 
     countries_total = pd.DataFrame.from_dict(countries_total)
-    countries_total.sort_values(by=['Total'], inplace=True)
+    countries_total.sort_values(by=['Total'], inplace=True, ascending=False)
     countries_total.reset_index(drop=True, inplace=True)
-
-    Total = countries_total["Total"].to_list()
-    Country = countries_total["Country"].to_list()
-    Country.reverse()
-    Total.reverse()
 
     plt.figure(figsize=(10, 5))
     plt.gcf().subplots_adjust(bottom=0.30)
-    plt.xticks(range(len(Country)), Country, rotation='vertical')
-    plt.bar(Country, Total)
+    plt.xticks(range(len(countries_total["Country"].to_list())), countries_total["Country"].to_list(), rotation='vertical')
+    plt.bar(countries_total["Country"].to_list(), countries_total["Total"].to_list())
     plt.title('Total Visitors (' + str(start_year) + ' - ' + str(end_year) + ')')
     plt.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)
     plt.show()
 
-    top_countries = []
-    top_total = []
-
-    for x in range(3):
-        top_countries.append(Country[x])
-        top_total.append(Total[x])
+    print(countries_total['Country'].head(3).to_list())
 
     plt.figure(figsize=(10, 5))
     plt.gcf().subplots_adjust(bottom=0.30)
-    plt.xticks(range(len(top_countries)), top_countries, rotation='vertical')
-    plt.bar(top_countries, top_total)
+    plt.xticks(range(len(countries_total['Country'].head(3).to_list())), countries_total['Country'].head(3).to_list(), rotation='vertical')
+    plt.bar(countries_total['Country'].head(3).to_list(), countries_total['Total'].head(3).to_list())
     plt.title('Top Countries (' + str(start_year) + ' - ' + str(end_year) + ')')
     plt.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)
     plt.show()
-    top3_total = sum(top_total)
-    grand_mean = round(np.mean(Total))
+    top3_total = sum(countries_total['Total'].head(3).to_list())
+    grand_mean = round(np.mean(countries_total['Total'].to_list()))
 
 if __name__ == '__main__':
     findCountries()
