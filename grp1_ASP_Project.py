@@ -40,9 +40,7 @@ class findCountries:
     plt.bar(countries_total["Country"].to_list(), countries_total["Total"].to_list())
     plt.title('Total Visitors (' + str(start_year) + ' - ' + str(end_year) + ')')
     plt.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)
-    plt.show()
-
-    print(countries_total['Country'].head(3).to_list())
+    plt.savefig("allCountries(cluster_bar).png")
 
     plt.figure(figsize=(10, 5))
     plt.gcf().subplots_adjust(bottom=0.30)
@@ -50,7 +48,7 @@ class findCountries:
     plt.bar(countries_total['Country'].head(3).to_list(), countries_total['Total'].head(3).to_list())
     plt.title('Top Countries (' + str(start_year) + ' - ' + str(end_year) + ')')
     plt.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)
-    plt.show()
+    plt.savefig("top3Countries.png")
     top3_total = sum(countries_total['Total'].head(3).to_list())
     grand_mean = round(np.mean(countries_total['Total'].to_list()))
 
